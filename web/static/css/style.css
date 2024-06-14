@@ -1,0 +1,59 @@
+/* Estilos personalizados para tu sitio web */
+
+/* Estilos globales */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo para el navbar */
+.navbar-brand {
+    font-weight: bold;
+}
+
+.nav-link {
+    color: #333;
+}
+
+.nav-link:hover {
+    color: #007bff;
+}
+
+/* Estilo para el jumbotron */
+.jumbotron {
+    background: url('../img/v0.jpg') no-repeat center;
+    background-size: cover;
+    background-position: center center; /* Centrar la imagen vertical y horizontalmente */
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    height: 700px;
+}
+
+
+/* Estilo para las tarjetas del portafolio */
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+
+.card {
+            height: 100%;
+        }
+.card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+/* Estilo para el formulario de contacto */
+form .form-control {
+    margin-bottom: 1rem;
+}
+
+/* Estilo para el footer */
+footer {
+    background-color: #f8f9fa;
+    padding: 1rem 0;
+}
