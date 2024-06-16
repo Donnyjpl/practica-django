@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Vendedores - Venta de Vehículos{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Nuestros Vendedores</h1>
+    <div class="row">
+        {% for vendedor in vendedores %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ vendedor.nombre }}</h5>
+                    <p class="card-text">{{ vendedor.apellido }}</p>
+                    <p class="card-text">{{ vendedor.correo_electronico }}</p>
+                    <a href="#" class="btn btn-primary">Contactar</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

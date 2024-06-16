@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Clientes - Venta de Vehículos{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Nuestros Clientes</h1>
+    <div class="row">
+        {% for cliente in cliente %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ cliente.nombre }}</h5>
+                    <p class="card-text">{{ cliente.apellido}}</p>
+                    <p class="card-text">{{ cliente.correo_electronico }}</p>
+                    <a href="#" class="btn btn-primary">Ver detalles</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

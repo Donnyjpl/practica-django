@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Horizontal</title>
+    <!-- Cargar Bootstrap 5 CSS y JavaScript -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">Vehículos</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownVehiculos">
+                        <li class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Autos</a></li>
+                        <li><a class="dropdown-item" href="{% url 'agregar_auto' %}">Agregar Auto</a></li>
+                        <li><a class="dropdown-item" href="{% url 'lista_autos' %}">Listados de Autos</a></li>
+                        <li class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Vendedor</a></li>
+                        <li class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'agregar_vendedor' %}">Agregar Vendedor</a></li>
+                        <li><a class="dropdown-item" href="{% url 'lista_vendedores' %}">Listados de Vendedores</a></li>
+                        <li class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Cliente</a></li>
+                        <li class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'agregar_cliente' %}">Agregar Cliente</a></li>
+                        <li><a class="dropdown-item" href="{% url 'lista_clientes' %}">Listados de Clientes</a></li>
+                        <li class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Ventas</a></li>
+                        <li class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'agregar_ventas' %}">Agregar Venta</a></li>
+                        <li><a class="dropdown-item" href="{% url 'lista_ventas' %}">Listados de Ventas</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Cargar Bootstrap 5 JavaScript y jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

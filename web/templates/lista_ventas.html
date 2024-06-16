@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Ventas - Venta de Vehículos{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Ventas Realizadas</h1>
+    <div class="row">
+        {% for venta in ventas %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ venta.auto.marca }} {{ venta.auto.modelo }}</h5>
+                    <p class="card-text">Vendido a: {{ venta.cliente.nombre }}</p>
+                    <p class="card-text">Vendedor: {{ venta.vendedor.nombre }}</p>
+                    <p class="card-text">Fecha: {{ venta.fecha_venta}}</p>
+                    <p class="card-text">Precio: {{ venta.auto.precio }}</p>
+                    <a href="#" class="btn btn-primary">Ver detalles</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

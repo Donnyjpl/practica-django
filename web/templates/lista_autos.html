@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Portafolio - Venta de Vehículos{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Nuestros Vehículos</h1>
+    <div class="row">
+        {% for auto in autos %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                {% if auto.foto %}
+                <img src="{{ auto.foto.url }}" class="card-img-top" alt="Vehículo">
+                {% else %}
+                <img src="{% static 'img/default.jpg' %}" class="card-img-top" alt="Imagen por defecto">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ auto.marca }} {{ auto.modelo }}</h5>
+                    <p class="card-text">{{ auto.año }} - {{ auto.color }}</p>
+                    <p class="card-text">{{ auto.precio }}</p>
+                    <p class="card-text">{{ auto.cantidad }} disponibles</p>
+                    <a href="#" class="btn btn-primary">Ver más</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
