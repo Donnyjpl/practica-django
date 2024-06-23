@@ -1,0 +1,16 @@
+<!-- En tu_template.html -->
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Filtrar</button>
+  </form>
+  
+  {% if autos %}
+    <h3>Autos filtrados:</h3>
+    <ul>
+      {% for auto in autos %}
+        <li>{{ auto.marca }} - {{ auto.modelo }} - {{ auto.año }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}

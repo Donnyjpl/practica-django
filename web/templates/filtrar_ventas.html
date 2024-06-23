@@ -1,0 +1,15 @@
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Filtrar Ventas</button>
+  </form>
+  
+  {% if ventas %}
+    <h3>Ventas filtradas:</h3>
+    <ul>
+      {% for venta in ventas %}
+        <li>Venta de {{ venta.auto.marca }} {{ venta.auto.modelo }} a {{ venta.cliente.nombre }} el {{ venta.fecha_venta }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}

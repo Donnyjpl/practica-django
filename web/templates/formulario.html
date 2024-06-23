@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Ejemplo</title>
+</head>
+<body>
+    <h2>Formulario de Ejemplo</h2>
+    
+    <!-- Formulario principal -->
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Errores generales del formulario -->
+        {{ form.non_field_errors }}
+        
+        <!-- Campo: Nombre -->
+        <div class="fieldWrapper">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+            {{ form.name.errors }}
+        </div>
+        
+        <!-- Campo: Edad -->
+        <div class="fieldWrapper">
+            {{ form.age.label_tag }}
+            {{ form.age }}
+            {{ form.age.errors }}
+        </div>
+        
+        <!-- Campo: Email -->
+        <div class="fieldWrapper">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+        
+        <!-- Campo: Fecha de Nacimiento -->
+        <div class="fieldWrapper">
+            {{ form.birth_date.label_tag }}
+            {{ form.birth_date }}
+            {{ form.birth_date.errors }}
+        </div>
+        
+        <!-- Campo: Color Favorito -->
+        <div class="fieldWrapper">
+            {{ form.favorite_color.label_tag }}
+            {{ form.favorite_color }}
+            {{ form.favorite_color.errors }}
+        </div>
+        
+        <!-- Campo: Foto de Perfil -->
+        <div class="fieldWrapper">
+            {{ form.profile_picture.label_tag }}
+            {{ form.profile_picture }}
+            {{ form.profile_picture.errors }}
+        </div>
+        
+        <!-- Campo: Suscribirse al boletín -->
+        <div class="fieldWrapper">
+            {{ form.subscribe_newsletter.label }}
+            {{ form.subscribe_newsletter }}
+            {{ form.subscribe_newsletter.errors }}
+        </div>
+        
+        <!-- Botón de enviar -->
+        <button type="submit">Enviar</button>
+    </form>
+    
+    <!-- Mostrar datos enviados si existen -->
+    {% if cont %}
+        <h3>Datos del formulario enviado:</h3>
+        <p>Nombre: {{ cont.name }}</p>
+        <p>Edad: {{ cont.age }}</p>
+        <p>Email: {{ cont.email }}</p>
+        <p>Fecha de Nacimiento: {{ cont.birth_date }}</p>
+        <p>Color Favorito: {{ cont.favorite_color }}</p>
+        <p>Suscribirse al boletín: {{ cont.subscribe_newsletter }}</p>
+        <!-- Puedes mostrar otros campos aquí según sea necesario -->
+    {% endif %}
+    
+</body>
+</html>

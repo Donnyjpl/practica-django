@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Auto, Vendedor, Cliente, Venta
-from .forms import AutoForm, VendedorForm, ClienteForm, VentaForm
+from .forms import AutoForm, VendedorForm, ClienteForm, VentaForm, FiltroMarcaForm,FiltroVentaPorMarcaForm,ExampleForm
 from django.contrib import messages
 
 def index(request):
@@ -25,7 +25,7 @@ def lista_cliente(request):
 
 def lista_vendedores(request):
     vendedores = Vendedor.objects.all()
-    return render(request, 'lista_vendedor.html', {'vendedores': vendedores})
+    return render(request, 'lista_vendedores.html', {'vendedores': vendedores})
 
 def lista_ventas(request):
     ventas = Venta.objects.all()
@@ -74,5 +74,44 @@ def agregar_ventas(request):
     else:
         form = VentaForm()
     return render(request, 'agregar_ventas.html', {'form': form})
+
 def menu(request):
     return render(request, 'menu.html')
+
+def filtrar_autos_por_marca(request):
+    if request.method == 'POST':
+        form = FiltroMarcaForm(request.POST)
+        if form.is_valid():
+            marca_elegida = form.cleaned_data['marca']
+            autos_filtrados = Auto.objects.filter(marca=marca_elegida)
+            return render(request, 'filtro.html', {'form': form, 'autos': autos_filtrados})
+    else:
+        form = FiltroMarcaForm()
+    
+    return render(request, 'filtro.html', {'form': form})
+def filtrar_ventas_por_marca(request):
+    if request.method == 'POST':
+        form = FiltroVentaPorMarcaForm(request.POST)
+        if form.is_valid():
+            marca_elegida = form.cleaned_data['marca']
+            ventas_filtradas = Venta.objects.filter(auto__marca=marca_elegida)
+            return render(request, 'filtrar_ventas.html', {'form': form, 'ventas': ventas_filtradas})
+    else:
+        form = FiltroVentaPorMarcaForm()
+    
+    return render(request, 'filtrar_ventas.html', {'form': form})
+
+
+def formulario(request):
+    if request.method == 'POST':
+        form = ExampleForm(request.POST)
+        if form.is_valid():
+            cont = form.cleaned_data
+            return render(request, 'formulario.html', {'form': form, 'cont': cont})
+    else:
+        form = ExampleForm()
+    
+    return render(request, 'formulario.html', {'form': form})
+    
+    
+    
