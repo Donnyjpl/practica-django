@@ -1,5 +1,6 @@
 from django import forms
-from .models import Auto,Vendedor,Cliente,Venta
+from .models import Auto,Vendedor,Cliente,Venta,Usuario
+
 
 class AutoForm(forms.ModelForm):
     class Meta:
@@ -34,9 +35,14 @@ class FiltroVentaPorMarcaForm(forms.Form):
         
 
 class ExampleForm(forms.Form):
-    name = forms.CharField(max_length=100, required=True, label='Tu Nombre')
+    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Primer Nombre'}))
     age = forms.IntegerField(min_value=0, max_value=120, label='Edad')
-    email = forms.EmailField(required=True, label='Correo Electrónico')
+    def clean_age(self):
+        age = self.cleaned_data['age']
+        if age < 18:
+            raise forms.ValidationError("Debes ser mayor de edad.")
+        return age
+    email = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Tu correo electrónico'}))
     birth_date = forms.DateField(required=False, label='Fecha de Nacimiento')
     favorite_color = forms.ChoiceField(
         choices=[('blue', 'Azul'), ('green', 'Verde'), ('red', 'Rojo')],
@@ -46,3 +52,8 @@ class ExampleForm(forms.Form):
     subscribe_newsletter = forms.BooleanField(
         required=False, initial=True, label='Suscribirse al Boletín'
     )
+
+class UsuarioForm(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields ='__all__'

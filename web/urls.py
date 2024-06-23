@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import index,nosotros,portafolio,contacto,lista_autos,lista_cliente,menu, filtrar_autos_por_marca
 from .views import agregar_auto,agregar_cliente,agregar_vendedor,agregar_ventas,lista_ventas,lista_vendedores
-from .views import filtrar_ventas_por_marca,formulario
+from .views import filtrar_ventas_por_marca,formulario, logout_view,login_view,perfil_view
 urlpatterns = [
     path('', index, name='index'),
     path('menu/', menu, name='menu'),
@@ -38,5 +38,9 @@ urlpatterns = [
     path('filtro/auto', filtrar_autos_por_marca, name='filtro_auto'),
     path('filtro/venta', filtrar_ventas_por_marca, name='filtro_venta'),
     path('formulario', formulario, name='formulario'),
+    path('web/login/', login_view, name='login'),
+    path('web/logout/', logout_view, name='logout'),
+    path('web/perfil/', perfil_view, name='perfil'),
+    
                                                        
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

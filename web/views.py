@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect
-from .models import Auto, Vendedor, Cliente, Venta
+from .models import Auto, Vendedor, Cliente, Venta,Usuario
 from .forms import AutoForm, VendedorForm, ClienteForm, VentaForm, FiltroMarcaForm,FiltroVentaPorMarcaForm,ExampleForm
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
+
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request,'index.html')
 
 def nosotros(request):
     return render(request, 'nosotros.html')
@@ -112,6 +116,31 @@ def formulario(request):
         form = ExampleForm()
     
     return render(request, 'formulario.html', {'form': form})
+
+
+def login_view(request):
+    if request.method == 'POST':
+        # Verificar si 'username' y 'password' están en request.POST
+        if 'username' in request.POST and 'password' in request.POST:
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('perfil')
+            else:
+                messages.error(request, 'Credenciales inválidas')
+        else:
+            messages.error(request, 'Por favor, ingrese nombre de usuario y contraseña')
+    return render(request, 'login.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+
+@login_required
+def perfil_view(request):
+    return render(request, 'perfil.html')
     
     
     
