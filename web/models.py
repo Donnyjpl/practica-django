@@ -11,7 +11,11 @@ class Vendedor(models.Model):
 class Cliente(models.Model):
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
+<<<<<<< HEAD
     correo_electronico= models.EmailField(unique=True)
+=======
+     correo_electronico= models.EmailField(unique=True)
+>>>>>>> 0a22051c5558b224b874840f638bcb10825c6375
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
