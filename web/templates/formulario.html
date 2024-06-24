@@ -79,5 +79,15 @@
         <!-- Puedes mostrar otros campos aquí según sea necesario -->
     {% endif %}
     
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary" id="id_boton_guardar">Guardar</button>
+    </form>
+    
+
+
+
+
 </body>
 </html>
