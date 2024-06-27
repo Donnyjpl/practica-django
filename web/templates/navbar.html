@@ -12,18 +12,18 @@
                        href="{% url 'index' %}">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link{% if request.path == '/nosotros/' %} active{% endif %}"
+                    <a class="nav-link{% if request.path == 'web/nosotros/' %} active{% endif %}"
                        href="{% url 'nosotros' %}">Nosotros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link{% if request.path == '/portafolio/' %} active{% endif %}"
+                    <a class="nav-link{% if request.path == 'portafolio/' %} active{% endif %}"
                        href="{% url 'portafolio' %}">Portafolio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link{% if request.path == '/contacto/' %} active{% endif %}"
+                    <a class="nav-link{% if request.path == '/web/contacto/' %} active{% endif %}"
                        href="{% url 'contacto' %}">Contacto</a>
                 </li>
-                {% if request.path == '/portafolio/' %}
+                {% if '/web/portafolio/' in request.path %}
                 <li class="nav-item">
                     <a href="{% url 'logout' %}" class="btn btn-secondary ms-2">Cerrar sesión</a>
                 </li>

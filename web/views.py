@@ -139,7 +139,6 @@ def login_view(request):
         if form.is_valid():
             email = form.cleaned_data['email']
             clave = form.cleaned_data['clave']
-
             try:
                 persona = Persona.objects.get(email=email)
                 if persona.check_clave(clave):
@@ -151,11 +150,9 @@ def login_view(request):
                 form.add_error('email', 'correo no se encuentra registrado')
     else:
         form = PersonaLoginForm()
-    
     return render(request, 'login.html', {'form': form})
 
 def logout_view(request):
     logout(request)
     return redirect('index')
 
-    
