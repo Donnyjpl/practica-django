@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import Auto, Vendedor, Cliente, Venta,Usuario
-from .forms import AutoForm, VendedorForm, ClienteForm, VentaForm, FiltroMarcaForm,FiltroVentaPorMarcaForm,ExampleForm
+from .models import Auto, Vendedor, Cliente, Venta,Persona
+from .forms import AutoForm, VendedorForm, ClienteForm, VentaForm, FiltroMarcaForm,FiltroVentaPorMarcaForm,ExampleForm,PersonaForm
+from .forms import PersonaLoginForm
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-
-
+from django.contrib.auth import logout
 
 def index(request):
     return render(request,'index.html')
@@ -14,7 +12,11 @@ def nosotros(request):
     return render(request, 'nosotros.html')
 
 def portafolio(request):
-    return render(request, 'portafolio.html')
+    if 'persona_email' not in request.session:
+        messages.error(request, 'Debes iniciar sesión para ver la página Portafolio')
+        return redirect('login')
+    cuenta = request.session['persona_email']
+    return render(request, 'portafolio.html', { 'cuenta': cuenta})
 
 def contacto(request):
     return render(request, 'contacto.html')
@@ -118,29 +120,42 @@ def formulario(request):
     return render(request, 'formulario.html', {'form': form})
 
 
+def registro(request):
+    if request.method == 'POST':
+        form = PersonaForm(request.POST)
+        if form.is_valid():
+            persona = form.save(commit=False)
+            persona.set_clave(form.cleaned_data['clave'])
+            persona.save()
+            return redirect('index')
+    else:
+        form = PersonaForm()
+    return render(request, 'registro.html', {'form': form})
+
+
 def login_view(request):
     if request.method == 'POST':
-        # Verificar si 'username' y 'password' están en request.POST
-        if 'username' in request.POST and 'password' in request.POST:
-            username = request.POST['username']
-            password = request.POST['password']
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('perfil')
-            else:
-                messages.error(request, 'Credenciales inválidas')
-        else:
-            messages.error(request, 'Por favor, ingrese nombre de usuario y contraseña')
-    return render(request, 'login.html')
+        form = PersonaLoginForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            clave = form.cleaned_data['clave']
+
+            try:
+                persona = Persona.objects.get(email=email)
+                if persona.check_clave(clave):
+                    request.session['persona_email'] = persona.nombre
+                    return redirect('portafolio')
+                else:
+                    form.add_error('clave', 'clave incorrecta')
+            except Persona.DoesNotExist:
+                form.add_error('email', 'correo no se encuentra registrado')
+    else:
+        form = PersonaLoginForm()
+    
+    return render(request, 'login.html', {'form': form})
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('index')
 
-@login_required
-def perfil_view(request):
-    return render(request, 'perfil.html')
-    
-    
     

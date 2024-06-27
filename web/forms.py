@@ -1,5 +1,5 @@
 from django import forms
-from .models import Auto,Vendedor,Cliente,Venta,Usuario
+from .models import Auto,Vendedor,Cliente,Venta,Persona
 
 
 class AutoForm(forms.ModelForm):
@@ -36,7 +36,7 @@ class FiltroVentaPorMarcaForm(forms.Form):
 
 class ExampleForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Primer Nombre'}))
-    age = forms.IntegerField(min_value=0, max_value=120, label='Edad')
+    age = forms.IntegerField(required=True, max_value=120, label='Edad')
     def clean_age(self):
         age = self.cleaned_data['age']
         if age < 18:
@@ -53,7 +53,14 @@ class ExampleForm(forms.Form):
         required=False, initial=True, label='Suscribirse al Boletín'
     )
 
-class UsuarioForm(forms.ModelForm):
+class PersonaForm(forms.ModelForm):
     class Meta:
-        model = Usuario
-        fields ='__all__'
+        model = Persona
+        fields = ['email', 'clave', 'nombre', 'fecha_nacimiento']
+        widgets = {
+            'clave': forms.PasswordInput(),
+        }
+        
+class PersonaLoginForm(forms.Form):
+    email = forms.EmailField()
+    clave = forms.CharField(widget=forms.PasswordInput)        

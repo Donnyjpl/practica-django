@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Login - Venta de Vehículos{% endblock %}
+
+{% block content %}
+<div class="container mt-5 text-center">
+    <h1>Login</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+       
+        <input type="submit" class="btn btn-primary" value="Login"> <!-- Añadimos la clase btn y btn-primary para dar estilo al botón -->
+        
+    </form>
+</div>
+
+{% if messages %}
+<div class="container">
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+{% endblock %}

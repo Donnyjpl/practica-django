@@ -70,8 +70,8 @@
     <!-- Mostrar datos enviados si existen -->
     {% if cont %}
         <h3>Datos del formulario enviado:</h3>
-        <p>Nombre: {{ cont.name }}</p>
-        <p>Edad: {{ cont.age }}</p>
+        <p>Nombre: {{ cont.name | upper   }}</p>
+        <p>Edad: {{ cont.age|date:"F d, Y"}}</p>
         <p>Email: {{ cont.email }}</p>
         <p>Fecha de Nacimiento: {{ cont.birth_date }}</p>
         <p>Color Favorito: {{ cont.favorite_color }}</p>
@@ -84,10 +84,6 @@
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary" id="id_boton_guardar">Guardar</button>
     </form>
-    
-
-
-
-
+   
 </body>
 </html>

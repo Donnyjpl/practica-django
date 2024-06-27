@@ -3,8 +3,14 @@
 {% block title %}Portafolio - Venta de Vehículos{% endblock %}
 
 {% block content %}
+<div class="row col-md-6">
+    <div>
+        <p class="welcome-message">Bienvenido: <b>{{ cuenta|upper }}</b></p>
+    </div>
+    <div> <a href="{% url 'logout' %}" class="btn btn-secondary ">Cerrar sesión</a></div>
+</div>
 <div class="container mt-5">
-    <h1>Nuestros Vehículos</h1>
+    <h1 class="mt-5">Nuestros Vehículos</h1>
     <div class="row">
         <!-- Aquí puedes agregar más vehículos -->
         <div class="col-md-4">
@@ -39,4 +45,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

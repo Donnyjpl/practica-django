@@ -1,59 +1,58 @@
-/* Estilos personalizados para tu sitio web */
-
-/* Estilos globales */
+/* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
 }
 
-/* Estilo para el navbar */
+.container {
+    max-width: 1200px; /* Ancho máximo para los contenidos */
+    margin: 0 auto; /* Centrar el contenido */
+    padding: 0 15px; /* Espacio alrededor del contenido */
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+    padding: 1rem 0;
+}
+
 .navbar-brand {
+    font-size: 1.5rem;
     font-weight: bold;
 }
 
-.nav-link {
-    color: #333;
+.navbar-nav {
+    margin-left: auto; /* Alinear a la derecha */
 }
 
-.nav-link:hover {
-    color: #007bff;
+.navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
+    color: #333; /* Color de texto */
 }
 
-/* Estilo para el jumbotron */
-.jumbotron {
-    background: url('../img/v0.jpg') no-repeat center;
-    background-size: cover;
-    background-position: center center; /* Centrar la imagen vertical y horizontalmente */
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    height: 700px;
-}
-
-
-/* Estilo para las tarjetas del portafolio */
-.card-title {
-    font-size: 1.25rem;
+.navbar-nav .nav-link.active {
     font-weight: bold;
+    color: #007bff; /* Color activo */
 }
 
-.card-text {
-    font-size: 1rem;
+/* Estilos para el botón de Cerrar sesión */
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
 }
 
-.card {
-            height: 100%;
-        }
-.card-body {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-/* Estilo para el formulario de contacto */
-form .form-control {
-    margin-bottom: 1rem;
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
 }
 
 /* Estilo para el footer */
 footer {
     background-color: #f8f9fa;
     padding: 1rem 0;
+}
+
+.welcome-message {
+    font-size: 18px;
+    margin-bottom: 10px;
 }
